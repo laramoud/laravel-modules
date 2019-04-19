@@ -1,0 +1,12 @@
+{
+    "name": "pravodev/laramoud",
+    "description": "Laravel Modular, Modularized Laravel",
+    "type": "libary",
+    "authors": [
+        {
+            "name": "Rifqi Khoeruman Azam",
+            "email": "pravodev@gmail.com"
+        }
+    ],
+    "require": {}
+}
