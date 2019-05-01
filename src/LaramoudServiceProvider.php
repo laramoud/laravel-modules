@@ -2,7 +2,6 @@
 
 namespace Pravodev\Laramoud;
 
-use Illuminate\Support\Facades\Route;
 use Pravodev\Laramoud\Providers\ModuleServiceProvider;
 
 class LaramoudServiceProvider extends ModuleServiceProvider
@@ -15,9 +14,9 @@ class LaramoudServiceProvider extends ModuleServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../config/laramoud.php' => \config_path('laramoud.php')
+            __DIR__.'/../config/laramoud.php' => \config_path('laramoud.php'),
         ]);
-        
+
         $this->loadModules();
     }
 }

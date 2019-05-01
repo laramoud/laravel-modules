@@ -2,7 +2,7 @@
 
 namespace Pravodev\Laramoud;
 
-class Laramoud 
+class Laramoud
 {
     public function __construct()
     {
@@ -11,7 +11,6 @@ class Laramoud
 
     public function getModulePath()
     {
-
     }
 
     public function getConfig()
