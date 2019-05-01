@@ -1,12 +1,51 @@
 {
     "name": "pravodev/laramoud",
-    "description": "Laravel Modular, Modularized Laravel",
-    "type": "libary",
+    "description": "Laravel modular, laravel management, modularized",
+    "keywords": [
+        "modules",
+        "laravel modular",
+        "ravodev"
+    ],
+    "license": "MIT",
+    "type": "library",
     "authors": [
         {
             "name": "Rifqi Khoeruman Azam",
-            "email": "pravodev@gmail.com"
+            "email": "pravodev@gmail.com",
+            "homepage": "http://rifqiazam.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": ">=7.2",
+        "composer-plugin-api": "^1.0",
+        "pravodev/laramoud-installer": "dev-master"
+    },
+	"support": {
+		"issues": "https://github.com/pravodev/laramoud/issues"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~7.0|~8.0",
+        "laravel/framework": "5.8.*",
+        "phpstan/phpstan": "^0.9.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pravodev\\Laramoud\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pravodev\\Laramoud\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Pravodev\\Laramoud\\LaramoudServiceProvider"
+            ],
+            "aliases": {
+                "Laramoud": "Pravodev\\Laramoud\\Laramoud"
+            }
+        }
+    }
 }
