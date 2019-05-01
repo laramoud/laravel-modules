@@ -47,7 +47,7 @@ trait Resource
     public function loadMigrations($module_name)
     {
         $path = $this->getModulePath($module_name.'/database/migrations');
-        $this->loadMigrationsFrom($path, $namespace);
+        $this->loadMigrationsFrom($path, $path);
     }
 
     /**
