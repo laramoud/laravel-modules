@@ -1,7 +1,7 @@
 <?php
 
 return [
-    /**
+    /*
      * -------------------------------------------
      * Module path
      * - app
@@ -11,8 +11,6 @@ return [
      */
     'module_path' => base_path('modules'),
 
-
-
     'spl_autoload' => true,
 
     // work if spl_autoload true
@@ -20,12 +18,12 @@ return [
         // "module_directory" => YourNameSpace
     ],
 
-    /**
+    /*
      *
      */
     'observers' => [
         'autoboot' => true,
-        'except' => []
+        'except'   => [],
     ],
 
     //laramoud.json

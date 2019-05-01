@@ -1,13 +1,14 @@
 <?php
 
 namespace Pravodev\Laramoud\Contracts;
+
 use Illuminate\Support\Facades\Route;
 
 trait Resource
 {
     /**
-     * Load View by namespace of module
-     * 
+     * Load View by namespace of module.
+     *
      * @return void
      */
     public function loadViews($module_name)
@@ -18,19 +19,21 @@ trait Resource
     }
 
     /**
-     * Load Routes 
-     * 
+     * Load Routes.
+     *
      * @return void
      */
     public function loadRoutes($module_name)
     {
-        foreach(['web', 'api'] as $route_file){
+        foreach (['web', 'api'] as $route_file) {
             $path = $this->getModulePath($module_name.'/routes/'.$route_file.'.php');
-            if(file_exists($path) == false) continue;
+            if (file_exists($path) == false) {
+                continue;
+            }
             $namespace = $this->getNamespace($module_name, 'Http\Controllers');
             $route = Route::middleware($route_file)->namespace($namespace);
 
-            if($route_file == 'api'){
+            if ($route_file == 'api') {
                 $route->prefix($route_file);
             }
 
@@ -39,7 +42,7 @@ trait Resource
     }
 
     /**
-     * Load Migrations 
+     * Load Migrations.
      */
     public function loadMigrations($module_name)
     {
@@ -48,13 +51,14 @@ trait Resource
     }
 
     /**
-     * Get Module Namespace
-     * 
+     * Get Module Namespace.
+     *
      * @return string
      */
-    public function getNamespace($module_name, $name = "")
+    public function getNamespace($module_name, $name = '')
     {
         $namespace = ucwords($module_name);
+
         return $namespace.'\\'.$name;
     }
 }
