@@ -1,11 +1,11 @@
 <?php
 
-namespace Laramoud\Providers;
+namespace Pravodev\Laramoud;
 
 use Illuminate\Support\Facades\Route;
-use Laramoud\Providers\ModuleServiceProvider;
+use Pravodev\Laramoud\Providers\ModuleServiceProvider;
 
-class LaramoudServiceProvider extends ServiceProvider
+class LaramoudServiceProvider extends ModuleServiceProvider
 {
     /**
      * Bootstrap services.
@@ -14,12 +14,10 @@ class LaramoudServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        parent::boot();
-
-        if($this->isAutoloadNamespaces()){
-            $this->autoloadNamespaces();
-        }
-
+        $this->publishes([
+            __DIR__ . '/../config/laramoud.php' => \config_path('laramoud.php')
+        ]);
+        
         $this->loadModules();
     }
 }
