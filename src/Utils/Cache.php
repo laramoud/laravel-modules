@@ -29,7 +29,7 @@ class Cache
             }
 
             if ($attribute && is_array($cached)) {
-                return $cached[$attribute];
+                return $cached[$attribute] ?? null;
             }
 
             return $cached;
