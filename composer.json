@@ -18,7 +18,12 @@
     "require": {
         "php": ">=7.2",
         "composer-plugin-api": "^1.0",
-        "pravodev/laramoud-installer": "dev-master"
+        "pravodev/laramoud-installer": "dev-master",
+        "ext-zip": "*",
+        "guzzlehttp/guzzle": "~6.0",
+        "symfony/console": "~3.0|~4.0",
+        "symfony/filesystem": "~3.0|~4.0",
+        "symfony/process": "~3.0|~4.0"
     },
 	"support": {
 		"issues": "https://github.com/pravodev/laramoud/issues"
