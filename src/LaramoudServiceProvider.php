@@ -6,6 +6,10 @@ use Pravodev\Laramoud\Providers\ModuleServiceProvider;
 
 class LaramoudServiceProvider extends ModuleServiceProvider
 {
+    protected $commands = [
+        \Pravodev\Laramoud\Commands\NewCommand::class
+    ];
+    
     /**
      * Bootstrap services.
      *
@@ -17,6 +21,10 @@ class LaramoudServiceProvider extends ModuleServiceProvider
             __DIR__.'/../config/laramoud.php' => \config_path('laramoud.php'),
         ]);
 
+        if($this->app->runningInConsole()){
+            $this->commands($this->commands);
+        }
+        
         $this->loadModules();
     }
 }
