@@ -48,15 +48,24 @@ class Cache
     public function set($type, $attribute, $value = null)
     {
         $filename = $this->path().$type.'.php';
-        $value = $value == null ? $attribute : $value;
-        $export = "<?php \n return ".\var_export($attribute, true).';';
+        if($value == null){
+            $value = $attribute;
+            $attribute = null;
+        }
 
         //check if file exists append to it
         if (file_exists($filename)) {
-            // do nothing
+            $current = include $filename;
+            
+            if(is_string($attribute)){
+                $current[$attribute] = array_merge($current[$attribute], $value);
+            }
+
+            $value = $current;
         }
 
         try {
+            $export = "<?php \n return ".\var_export($value, true).';';
             file_put_contents($filename, $export);
 
             return true;
