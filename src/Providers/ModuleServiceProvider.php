@@ -51,7 +51,6 @@ abstract class ModuleServiceProvider extends ServiceProvider
      */
     public function loadModules()
     {
-        dd($this->getListOfModules());
         foreach ($this->getListOfModules() as $module) {
             $this->loadViews($module);
             $this->loadRoutes($module);
