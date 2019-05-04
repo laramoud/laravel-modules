@@ -7,6 +7,7 @@ use ZipArchive;
 use RuntimeException;
 use GuzzleHttp\Client;
 use Pravodev\Laramoud\Contracts\Module;
+use Illuminate\Support\Str;
 
 class NewCommand extends Command
 {
@@ -48,10 +49,17 @@ class NewCommand extends Command
         }
 
         $this->info('Crafting module...');
-        $this->download($zipFile = $this->makeFileName(), $this->getVersion(), true)
-             ->extract(getcwd().'/laramoud_79a5d5baffa0f79b59a1cd842ab2381b.zip', $directory);
-        dd($zipFile);
+
+        if(!$this->cache->get('laramoud', 'scaffold')){
+            $this->download($zipFile = $this->makeFileName(), $this->getVersion(), true);
+        }
+
+        $this->extractTo($directory)
+             ->changeModuleComposer($directory, $this->argument('module_name'))
+             ->addModuleToBaseComposer($directory);
+        
         dd($directory);
+
     }
 
     protected function checkRequirement()
@@ -79,14 +87,10 @@ class NewCommand extends Command
                 break;
         }
 
-        if($cache){
-            if($this->cache->get('laramoud', 'scaffold')){
-                return $this;
-            }
-        }
-        $this->cache->set('laramoud', ['scaffold' => $zipFile]);
         $response = (new Client)->get('http://laramoud.rifqiazam.com/download/'.$filename);
-        file_put_contents($zipFile, $response->getBody());
+        $pathzipfile = $this->cache->path($zipFile);
+        file_put_contents($pathzipfile, $response->getBody());
+        $this->cache->set('laramoud', 'scaffold', $pathzipfile);
         return $this;
     }
 
@@ -97,10 +101,10 @@ class NewCommand extends Command
      * @param  string  $directory
      * @return $this
      */
-    protected function extract($zipFile, $directory)
+    protected function extractTo($directory)
     {
         $archive = new ZipArchive;
-        $archive->open($zipFile);
+        $archive->open($this->cache->get('laramoud', 'scaffold'));
         $archive->extractTo($directory);
         $archive->close();
         return $this;
@@ -127,7 +131,43 @@ class NewCommand extends Command
 
     protected function makeFileName()
     {
-        return getcwd().'/laramoud_'.md5(time().uniqid()).'.zip';
+        return 'laramoud_'.md5(time().uniqid()).'.zip';
+    }
+
+    public function changeModuleComposer($directory, $module_name)
+    {
+        $filename = $directory.'/composer.json';
+
+        $description = $this->ask('Description ');
+        
+        $packageName = 'laramoud-module/'.$module_name;
+        
+        $composer = [
+            'name' => $packageName,
+            'description' => $description,
+            'type' => 'laramoud-module',
+            'require' => [
+                "pravodev/laramoud-installer" => '^1.0'
+            ],
+            'autoload' => [
+                'psr-4' => [
+                    $this->getNamespace($module_name) => 'src/'
+                ],
+            ]
+        ];
+        
+
+        return \file_put_contents($filename, json_encode($composer,JSON_PRETTY_PRINT));
+    }
+
+    public function addModuleToBaseComposer($directory)
+    {
+        
+    }
+    
+    public function getNamespace($module_name)
+    {
+        return Str::studly($module_name).'\\';
     }
 
 }
