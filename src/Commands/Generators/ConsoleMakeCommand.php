@@ -8,7 +8,7 @@ use Pravodev\Laramoud\Contracts\GeneratorTrait;
 class ConsoleMakeCommand extends BaseConsoleMakeCommand
 {
     use GeneratorTrait;
-    
+
     /**
      * The console command name.
      *
