@@ -17,7 +17,6 @@ use ZipArchive;
 use RuntimeException;
 use GuzzleHttp\Client;
 use Pravodev\Laramoud\Contracts\Module;
-use Illuminate\Support\Str;
 
 class NewCommand extends Command
 {
@@ -74,6 +73,9 @@ class NewCommand extends Command
         $this->info('install module '.$this->argument('module_name'). '...');
         $this->line('composer require laramoud-module/'.$this->argument('module_name'));
         shell_exec('composer require laramoud-module/'.$this->argument('module_name'));
+        $this->line('Clearing cache...');
+        $this->call('laramoud:clear');
+        $this->info('Module ready! Build something amazing.');
 
     }
 
@@ -175,7 +177,7 @@ class NewCommand extends Command
             ],
             'autoload' => [
                 'psr-4' => [
-                    $this->getNamespace($module_name) => 'src/'
+                    $this->getModuleNamespace($module_name) => 'src/'
                 ],
             ]
         ];
@@ -213,11 +215,6 @@ class NewCommand extends Command
         $composer['repositories'] = array_merge($composer['repositories'], $repositories);
         \file_put_contents($filename, json_encode($composer, JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT));
         return $this;
-    }
-    
-    public function getNamespace($module_name)
-    {
-        return Str::studly($module_name).'\\';
     }
 
 }
