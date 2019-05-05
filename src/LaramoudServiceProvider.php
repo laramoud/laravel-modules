@@ -16,7 +16,9 @@ use Pravodev\Laramoud\Providers\ModuleServiceProvider;
 class LaramoudServiceProvider extends ModuleServiceProvider
 {
     protected $commands = [
-        \Pravodev\Laramoud\Commands\NewCommand::class
+        \Pravodev\Laramoud\Commands\NewCommand::class,
+        \Pravodev\Laramoud\Commands\ClearCommand::class,
+        \Pravodev\Laramoud\Commands\Generators\ControllerMakeCommand::class,
     ];
     
     /**
