@@ -14,6 +14,7 @@
 namespace Pravodev\Laramoud\Contracts;
 
 use Pravodev\Laramoud\Utils\Cache;
+use Illuminate\Support\Str;
 
 trait Module
 {
@@ -88,10 +89,14 @@ trait Module
         if ($composer = $this->cache->get('composer')) {
             return $composer;
         }
-        // dd(as);
         $composer = json_decode(file_get_contents(base_path('composer.json')), true);
         $this->cache->set('composer', $composer);
 
         return $composer;
+    }
+
+    public function getModuleNamespace($module)
+    {
+        return Str::studly($module).'\\';
     }
 }
