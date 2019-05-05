@@ -44,22 +44,36 @@ class NewCommand extends Command
         $this->checkRequirement();
 
         $directory = $this->argument('module_name') ? $this->getModulePath().$this->argument('module_name') : getcwd();
-        if(!$this->option('force')){
-            // $this->verifyApplicationDoesntExist($directory);
+
+        if(!$this->option('force') ){
+            $this->verifyModuleDoesntExist($directory);
         }
 
-        $this->info('Crafting module...');
-
+        
         if(!$this->cache->get('laramoud', 'scaffold')){
+            $this->info('Crafting module...');
             $this->download($zipFile = $this->makeFileName(), $this->getVersion(), true);
+        } else {
+            $this->info('Crafting module from cache...');
         }
 
         $this->extractTo($directory)
-             ->changeModuleComposer($directory, $this->argument('module_name'))
-             ->addModuleToBaseComposer($directory);
-        
-        dd($directory);
+            ->changeModuleComposer($directory, $this->argument('module_name'))
+            ->addModuleToBaseComposer($directory);
 
+        $this->info('install module '.$this->argument('module_name'). '...');
+        $this->line('composer require laramoud-module/'.$this->argument('module_name'));
+        shell_exec('composer require laramoud-module/'.$this->argument('module_name'));
+            
+        
+
+    }
+
+    public function verifyModuleDoesntExist($directory, $exception = false)
+    {
+        if(!file_exists($directory)) return true;
+        
+        throw new \Exception('Module with name of '. $this->argument('module_name') . ' already installed');
     }
 
     protected function checkRequirement()
@@ -136,6 +150,8 @@ class NewCommand extends Command
 
     public function changeModuleComposer($directory, $module_name)
     {
+        $this->info('Preparing composer.json...');
+        
         $filename = $directory.'/composer.json';
 
         $description = $this->ask('Description ');
@@ -147,7 +163,7 @@ class NewCommand extends Command
             'description' => $description,
             'type' => 'laramoud-module',
             'require' => [
-                "pravodev/laramoud-installer" => '^1.0'
+                "pravodev/laramoud" => 'dev-develop'
             ],
             'autoload' => [
                 'psr-4' => [
@@ -157,12 +173,38 @@ class NewCommand extends Command
         ];
         
 
-        return \file_put_contents($filename, json_encode($composer,JSON_PRETTY_PRINT));
+        \file_put_contents($filename, json_encode($composer,JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT));
+
+        return $this;
     }
 
     public function addModuleToBaseComposer($directory)
     {
-        
+        $this->info('add module to base composer');
+        $filename = getcwd().'/composer.json';
+        $composer = json_decode(\file_get_contents($filename), true);
+
+        if(array_key_exists('repositories', $composer)){
+            if(array_key_exists('type', $composer['repositories'])){
+                $composer['repositories'] = [ $composer['repositories'] ];
+            }
+        }else{
+            $composer['repositories'] = [];
+        }
+
+        $repositories = [
+            [
+                'type' => 'path',
+                'url' => $directory,
+                'options' => [
+                    'symlink' => true
+                ]
+            ]
+        ];
+
+        $composer['repositories'] = array_merge($composer['repositories'], $repositories);
+        \file_put_contents($filename, json_encode($composer, JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT));
+        return $this;
     }
     
     public function getNamespace($module_name)
