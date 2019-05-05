@@ -4,7 +4,6 @@ namespace Pravodev\Laramoud\Commands\Generators;
 
 use Illuminate\Database\Console\Factories\FactoryMakeCommand as BaseFactoryMakeCommand;
 use Pravodev\Laramoud\Contracts\GeneratorTrait;
-use Pravodev\Laramoud\Contracts\Module;
 
 class FactoryMakeCommand extends BaseFactoryMakeCommand
 {
@@ -20,7 +19,8 @@ class FactoryMakeCommand extends BaseFactoryMakeCommand
     /**
      * Get the destination class path.
      *
-     * @param  string  $name
+     * @param string $name
+     *
      * @return string
      */
     protected function getPath($name)
@@ -28,7 +28,7 @@ class FactoryMakeCommand extends BaseFactoryMakeCommand
         $name = str_replace(
             ['\\', '/'], '', $this->argument('name')
         );
+
         return $this->getModulePath($this->argument('module_name'))."/database/factories/{$name}.php";
     }
-
 }
