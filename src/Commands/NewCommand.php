@@ -1,4 +1,14 @@
 <?php
+/**
+ * This file is part of laramoud package.
+ * 
+ * @author Rifqi Khoeruman Azam <pravodev@gmail.com>
+ * 
+ * 
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ * Copyright © 2019 PondokIT. All rights reserved.
+ */
 
 namespace Pravodev\Laramoud\Commands;
 
@@ -64,8 +74,6 @@ class NewCommand extends Command
         $this->info('install module '.$this->argument('module_name'). '...');
         $this->line('composer require laramoud-module/'.$this->argument('module_name'));
         shell_exec('composer require laramoud-module/'.$this->argument('module_name'));
-            
-        
 
     }
 
