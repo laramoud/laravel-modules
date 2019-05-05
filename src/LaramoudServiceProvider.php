@@ -12,18 +12,12 @@
 namespace Pravodev\Laramoud;
 
 use Pravodev\Laramoud\Providers\ModuleServiceProvider;
+use Pravodev\Laramoud\Contracts\RegisterCommand;
 
 class LaramoudServiceProvider extends ModuleServiceProvider
 {
-    protected $commands = [
-        \Pravodev\Laramoud\Commands\NewCommand::class,
-        \Pravodev\Laramoud\Commands\ClearCommand::class,
-        \Pravodev\Laramoud\Commands\Generators\ControllerMakeCommand::class,
-        \Pravodev\Laramoud\Commands\Generators\EventMakeCommand::class,
-        \Pravodev\Laramoud\Commands\Generators\ExceptionMakeCommand::class,
-        \Pravodev\Laramoud\Commands\Generators\FactoryMakeCommand::class,
-    ];
-    
+    use RegisterCommand;
+
     /**
      * Bootstrap services.
      *
@@ -36,7 +30,7 @@ class LaramoudServiceProvider extends ModuleServiceProvider
         ]);
 
         if($this->app->runningInConsole()){
-            $this->commands($this->commands);
+            $this->registerCommands();
         }
         
         $this->loadModules();
