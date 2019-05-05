@@ -66,15 +66,17 @@ class Cache
         //check if file exists append to it
         if (file_exists($filename)) {
             $current = include $filename;
-            if(is_string($attribute)){
-                if(is_array($value)){
-                     $value = array_merge(($current[$attribute] ?? []), $value);
+            if($attribute){
+                if(is_string($attribute)){
+                    if(is_array($value)){
+                         $value = array_merge(($current[$attribute] ?? []), $value);
+                    }
+    
+                    $current[$attribute] = $value;
                 }
-
-                $current[$attribute] = $value;
+    
+                $value = $current;
             }
-
-            $value = $current;
         }
 
         try {
