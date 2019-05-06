@@ -3,13 +3,13 @@
 namespace Pravodev\Laramoud\Commands\Generators;
 
 use Illuminate\Foundation\Console\ModelMakeCommand as BaseModelMakeCommand;
-use Pravodev\Laramoud\Contracts\GeneratorTrait;
 use Illuminate\Support\Str;
+use Pravodev\Laramoud\Contracts\GeneratorTrait;
 
 class ModelMakeCommand extends BaseModelMakeCommand
 {
     use GeneratorTrait;
-    
+
     /**
      * The console command name.
      *
@@ -27,7 +27,7 @@ class ModelMakeCommand extends BaseModelMakeCommand
         $factory = Str::studly(class_basename($this->argument('name')));
 
         $this->call('laramoud-make:factory', [
-            'name' => "{$factory}Factory",
+            'name'    => "{$factory}Factory",
             '--model' => $this->qualifyClass($this->getNameInput()),
         ]);
     }
@@ -46,7 +46,7 @@ class ModelMakeCommand extends BaseModelMakeCommand
         }
 
         $this->call('laramoud-make:migration', [
-            'name' => "create_{$table}_table",
+            'name'     => "create_{$table}_table",
             '--create' => $table,
         ]);
     }
@@ -63,7 +63,7 @@ class ModelMakeCommand extends BaseModelMakeCommand
         $modelName = $this->qualifyClass($this->getNameInput());
 
         $this->call('laramoud-make:controller', [
-            'name' => "{$controller}Controller",
+            'name'    => "{$controller}Controller",
             '--model' => $this->option('resource') ? $modelName : null,
         ]);
     }

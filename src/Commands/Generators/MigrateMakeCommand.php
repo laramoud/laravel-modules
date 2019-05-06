@@ -1,14 +1,15 @@
 <?php
 /**
  * This file is part of laramoud package.
- * 
+ *
  * @author Rifqi Khoeruman Azam <pravodev@gmail.com>
- * 
- * 
+ *
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * Copyright © 2019 PondokIT. All rights reserved.
  */
+
 namespace Pravodev\Laramoud\Commands\Generators;
 
 use Illuminate\Console\Command;
@@ -45,15 +46,15 @@ class MigrateMakeCommand extends Command
     public function handle()
     {
         $this->call('make:migration', [
-            'name' => $this->argument('name'),
-            '--create' => $this->option('create'),
-            '--table' => $this->option('table'),
-            '--path' => $this->getMigrationPath(),
-            '--realpath' => $this->option('realpath')
+            'name'       => $this->argument('name'),
+            '--create'   => $this->option('create'),
+            '--table'    => $this->option('table'),
+            '--path'     => $this->getMigrationPath(),
+            '--realpath' => $this->option('realpath'),
         ]);
     }
 
-     /**
+    /**
      * Get migration path (either specified by '--path' option or default location).
      *
      * @return string
@@ -62,6 +63,7 @@ class MigrateMakeCommand extends Command
     {
         $path = $this->option('path') ?: '/database/migrations';
         $module_path = $this->getConfig('module_path', 'composer') ?: 'modules/';
+
         return $module_path.$this->argument('module_name').$path;
     }
 }
