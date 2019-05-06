@@ -30,6 +30,7 @@ trait RegisterCommand
         \Pravodev\Laramoud\Commands\Generators\MigrateMakeCommand::class,
         \Pravodev\Laramoud\Commands\Generators\ModelMakeCommand::class,
         \Pravodev\Laramoud\Commands\Generators\MigrateMakeCommand::class,
+        \Pravodev\Laramoud\Commands\Generators\NotificationMakeCommand::class,
     ];
 
     public function registerCommands()
