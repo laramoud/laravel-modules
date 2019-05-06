@@ -1,4 +1,14 @@
 <?php
+/**
+ * This file is part of laramoud package.
+ *
+ * @author Rifqi Khoeruman Azam <pravodev@gmail.com>
+ *
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ * Copyright © 2019 PondokIT. All rights reserved.
+ */
 
 namespace Pravodev\Laramoud\Utils;
 
@@ -29,7 +39,7 @@ class Cache
             }
 
             if ($attribute && is_array($cached)) {
-                return $cached[$attribute];
+                return $cached[$attribute] ?? null;
             }
 
             return $cached;
@@ -48,15 +58,29 @@ class Cache
     public function set($type, $attribute, $value = null)
     {
         $filename = $this->path().$type.'.php';
-        $value = $value == null ? $attribute : $value;
-        $export = "<?php \n return ".\var_export($attribute, true).';';
+        if ($value == null) {
+            $value = $attribute;
+            $attribute = null;
+        }
 
         //check if file exists append to it
         if (file_exists($filename)) {
-            // do nothing
+            $current = include $filename;
+            if ($attribute) {
+                if (is_string($attribute)) {
+                    if (is_array($value)) {
+                        $value = array_merge(($current[$attribute] ?? []), $value);
+                    }
+
+                    $current[$attribute] = $value;
+                }
+
+                $value = $current;
+            }
         }
 
         try {
+            $export = "<?php \n return ".\var_export($value, true).';';
             file_put_contents($filename, $export);
 
             return true;
