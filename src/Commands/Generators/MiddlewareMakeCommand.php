@@ -2,10 +2,10 @@
 
 namespace Pravodev\Laramoud\Commands\Generators;
 
-use Illuminate\Foundation\Console\ConsoleMakeCommand as BaseConsoleMakeCommand;
+use Illuminate\Routing\Console\MiddlewareMakeCommand as BaseMiddlewareMakeCommand;
 use Pravodev\Laramoud\Contracts\GeneratorTrait;
 
-class ConsoleMakeCommand extends BaseConsoleMakeCommand
+class MiddlewareMakeCommand extends BaseMiddlewareMakeCommand
 {
     use GeneratorTrait;
 
@@ -14,5 +14,5 @@ class ConsoleMakeCommand extends BaseConsoleMakeCommand
      *
      * @var string
      */
-    protected $name = 'laramoud-make:command';
+    protected $name = 'laramoud-make:middleware';
 }

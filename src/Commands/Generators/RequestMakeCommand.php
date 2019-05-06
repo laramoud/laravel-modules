@@ -2,10 +2,10 @@
 
 namespace Pravodev\Laramoud\Commands\Generators;
 
-use Illuminate\Foundation\Console\ConsoleMakeCommand as BaseConsoleMakeCommand;
+use Illuminate\Foundation\Console\RequestMakeCommand as BaseRequestMakeCommand;
 use Pravodev\Laramoud\Contracts\GeneratorTrait;
 
-class ConsoleMakeCommand extends BaseConsoleMakeCommand
+class RequestMakeCommand extends BaseRequestMakeCommand
 {
     use GeneratorTrait;
 
@@ -14,5 +14,5 @@ class ConsoleMakeCommand extends BaseConsoleMakeCommand
      *
      * @var string
      */
-    protected $name = 'laramoud-make:command';
+    protected $name = 'laramoud-make:request';
 }

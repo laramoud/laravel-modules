@@ -2,17 +2,18 @@
 
 namespace Pravodev\Laramoud\Commands\Generators;
 
-use Illuminate\Foundation\Console\ConsoleMakeCommand as BaseConsoleMakeCommand;
+use Illuminate\Foundation\Console\RuleMakeCommand as BaseRuleMakeCommand;
 use Pravodev\Laramoud\Contracts\GeneratorTrait;
 
-class ConsoleMakeCommand extends BaseConsoleMakeCommand
+class RuleMakeCommand extends BaseRuleMakeCommand
 {
     use GeneratorTrait;
+    
 
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'laramoud-make:command';
+    protected $name = 'laramoud-make:rule';
 }
