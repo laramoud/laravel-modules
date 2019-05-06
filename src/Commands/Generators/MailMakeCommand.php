@@ -25,7 +25,7 @@ class MailMakeCommand extends BaseMailMakeCommand
     {
         $path = $this->getModulePath($this->argument('module_name')).'/resources/views/'.str_replace('.', '/', $this->option('markdown')).'.blade.php';
 
-        if (! $this->files->isDirectory(dirname($path))) {
+        if (!$this->files->isDirectory(dirname($path))) {
             $this->files->makeDirectory(dirname($path), 0755, true);
         }
 
@@ -34,10 +34,11 @@ class MailMakeCommand extends BaseMailMakeCommand
         $this->files->put($path, file_get_contents($vendor.'/stubs/markdown.stub'));
     }
 
-     /**
+    /**
      * Build the class with the given name.
      *
-     * @param  string  $name
+     * @param string $name
+     *
      * @return string
      */
     protected function buildClass($name)
@@ -47,6 +48,7 @@ class MailMakeCommand extends BaseMailMakeCommand
         if ($this->option('markdown')) {
             $class = str_replace('DummyView', $this->argument('module_name').'::'.$this->option('markdown'), $class);
         }
+
         return $class;
     }
 }
