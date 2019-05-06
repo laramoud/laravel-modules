@@ -33,6 +33,9 @@ trait RegisterCommand
         \Pravodev\Laramoud\Commands\Generators\NotificationMakeCommand::class,
         \Pravodev\Laramoud\Commands\Generators\ObserverMakeCommand::class,
         \Pravodev\Laramoud\Commands\Generators\PolicyMakeCommand::class,
+        \Pravodev\Laramoud\Commands\Generators\ProviderMakeCommand::class,
+        \Pravodev\Laramoud\Commands\Generators\RequestMakeCommand::class,
+        \Pravodev\Laramoud\Commands\Generators\ResourceMakeCommand::class,
     ];
 
     public function registerCommands()
