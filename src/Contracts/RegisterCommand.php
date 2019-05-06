@@ -16,10 +16,18 @@ trait RegisterCommand
     protected $commands = [
         \Pravodev\Laramoud\Commands\NewCommand::class,
         \Pravodev\Laramoud\Commands\ClearCommand::class,
+
+        // List all generator commands
         \Pravodev\Laramoud\Commands\Generators\ControllerMakeCommand::class,
         \Pravodev\Laramoud\Commands\Generators\EventMakeCommand::class,
         \Pravodev\Laramoud\Commands\Generators\ExceptionMakeCommand::class,
         \Pravodev\Laramoud\Commands\Generators\FactoryMakeCommand::class,
+        \Pravodev\Laramoud\Commands\Generators\JobMakeCommand::class,
+        \Pravodev\Laramoud\Commands\Generators\ListenerMakeCommand::class,
+        \Pravodev\Laramoud\Commands\Generators\MailMakeCommand::class,
+        \Pravodev\Laramoud\Commands\Generators\MiddlewareMakeCommand::class,
+        \Pravodev\Laramoud\Commands\Generators\MigrateMakeCommand::class,
+        \Pravodev\Laramoud\Commands\Generators\ModelMakeCommand::class,
     ];
 
     public function registerCommands()
