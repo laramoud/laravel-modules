@@ -3,8 +3,8 @@
 namespace Pravodev\Laramoud\Commands\Generators;
 
 use Illuminate\Foundation\Console\ObserverMakeCommand as BaseObserverMakeCommand;
-use Pravodev\Laramoud\Contracts\GeneratorTrait;
 use Illuminate\Support\Str;
+use Pravodev\Laramoud\Contracts\GeneratorTrait;
 
 class ObserverMakeCommand extends BaseObserverMakeCommand
 {
@@ -20,8 +20,9 @@ class ObserverMakeCommand extends BaseObserverMakeCommand
     /**
      * Replace the model for the given stub.
      *
-     * @param  string  $stub
-     * @param  string  $model
+     * @param string $stub
+     * @param string $model
+     *
      * @return string
      */
     protected function replaceModel($stub, $model)
