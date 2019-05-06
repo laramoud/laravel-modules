@@ -8,25 +8,25 @@ use Pravodev\Laramoud\Contracts\Module;
 class CacheTest extends TestCase
 {
     use Module;
-    
+
     protected $value_for_cache = [
         'key' => [
             'value 1',
             'value 2',
-        ]
+        ],
     ];
-    
+
     public function __construct()
     {
         parent::__construct();
 
         $this->cacheInit();
     }
-    
+
     /**
      * Test get value from cached before cached file generated
-     * expected is return null
-     * 
+     * expected is return null.
+     *
      * @return void
      */
     public function testGetValueBeforeCachedShouldReturnNull()
@@ -46,7 +46,7 @@ class CacheTest extends TestCase
     public function testSetValueAfterCachedShouldReturnTrueAndCachedShouldHaveThreeValue()
     {
         $set = $this->cache->set('test', 'key', [
-            'value 3'
+            'value 3',
         ]);
 
         $this->assertTrue($set);

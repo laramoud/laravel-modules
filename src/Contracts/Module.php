@@ -2,10 +2,10 @@
 
 /**
  * This file is part of laramoud package.
- * 
+ *
  * @author Rifqi Khoeruman Azam <pravodev@gmail.com>
- * 
- * 
+ *
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * Copyright © 2019 PondokIT. All rights reserved.
@@ -13,8 +13,8 @@
 
 namespace Pravodev\Laramoud\Contracts;
 
-use Pravodev\Laramoud\Utils\Cache;
 use Illuminate\Support\Str;
+use Pravodev\Laramoud\Utils\Cache;
 
 trait Module
 {
@@ -62,7 +62,6 @@ trait Module
 
         return base_path('modules/'.$name);
     }
-
 
     /**
      * Get Laramoud Config.
