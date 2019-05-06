@@ -3,9 +3,9 @@
 namespace Pravodev\Laramoud\Commands\Generators;
 
 use Illuminate\Database\Console\Seeds\SeederMakeCommand as BaseSeederMakeCommand;
-use Pravodev\Laramoud\Contracts\GeneratorTrait;
 use Illuminate\Filesystem\Filesystem;
-use \Illuminate\Support\Composer;
+use Illuminate\Support\Composer;
+use Pravodev\Laramoud\Contracts\GeneratorTrait;
 
 class SeederMakeCommand extends BaseSeederMakeCommand
 {
@@ -17,7 +17,7 @@ class SeederMakeCommand extends BaseSeederMakeCommand
         $this->cacheInit();
         $this->composer = $composer;
     }
-    
+
     /**
      * The console command name.
      *
@@ -28,7 +28,8 @@ class SeederMakeCommand extends BaseSeederMakeCommand
     /**
      * Get the destination class path.
      *
-     * @param  string  $name
+     * @param string $name
+     *
      * @return string
      */
     protected function getPath($name)

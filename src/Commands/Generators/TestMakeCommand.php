@@ -3,8 +3,8 @@
 namespace Pravodev\Laramoud\Commands\Generators;
 
 use Illuminate\Foundation\Console\TestMakeCommand as BaseTestMakeCommand;
-use Pravodev\Laramoud\Contracts\GeneratorTrait;
 use Illuminate\Support\Str;
+use Pravodev\Laramoud\Contracts\GeneratorTrait;
 
 class TestMakeCommand extends BaseTestMakeCommand
 {
@@ -15,7 +15,8 @@ class TestMakeCommand extends BaseTestMakeCommand
     /**
      * Get the destination class path.
      *
-     * @param  string  $name
+     * @param string $name
+     *
      * @return string
      */
     protected function getPath($name)
