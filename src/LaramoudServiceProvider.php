@@ -12,13 +12,20 @@
 
 namespace Pravodev\Laramoud;
 
+use Illuminate\Support\ServiceProvider;
 use Pravodev\Laramoud\Contracts\RegisterCommand;
-use Pravodev\Laramoud\Providers\ModuleServiceProvider;
+use Pravodev\Laramoud\Contracts\Resource;
+use Pravodev\Laramoud\Contracts\Module;
 
-class LaramoudServiceProvider extends ModuleServiceProvider
+class LaramoudServiceProvider extends ServiceProvider
 {
-    use RegisterCommand;
+    use RegisterCommand, Resource, Module;
     
+    public function __construct($app)
+    {
+        parent::__construct($app);
+        $this->cacheInit();
+    }
     /**
      * Bootstrap services.
      *
@@ -35,5 +42,19 @@ class LaramoudServiceProvider extends ModuleServiceProvider
         }
 
         $this->loadModules();
+    }
+
+    /**
+     * Load View Routes Migration & OBservers of Module.
+     *
+     * @return void
+     */
+    public function loadModules()
+    {
+        foreach ($this->getListOfModules() as $module) {
+            $this->loadViews($module);
+            $this->loadRoutes($module);
+            $this->loadMigrations($module);
+        }
     }
 }
