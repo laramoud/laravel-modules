@@ -91,7 +91,9 @@ class LaramoudServiceProvider extends ServiceProvider
 
         foreach ($directives as $name => $expression) {
             Blade::directive($name, $expression);
-            Blade::directive('end'.$name, $expression);
+            Blade::directive('end'.$name, function(){
+                return "<?php } ?>";
+            });
         }
     }
 }

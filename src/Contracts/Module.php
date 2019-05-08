@@ -83,6 +83,11 @@ trait Module
         return config('laramoud.'.$key);
     }
 
+    /**
+     * Get base composer.
+     * 
+     * @return array
+     */
     public function getComposer()
     {
         if ($composer = $this->cache->get('composer')) {
@@ -94,6 +99,11 @@ trait Module
         return $composer;
     }
 
+    /**
+     * Get namespace of module.
+     * 
+     * @return string
+     */
     public function getModuleNamespace($module)
     {
         return Str::studly($module).'\\';
