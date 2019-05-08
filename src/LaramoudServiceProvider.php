@@ -18,7 +18,7 @@ use Pravodev\Laramoud\Providers\ModuleServiceProvider;
 class LaramoudServiceProvider extends ModuleServiceProvider
 {
     use RegisterCommand;
-
+    
     /**
      * Bootstrap services.
      *
