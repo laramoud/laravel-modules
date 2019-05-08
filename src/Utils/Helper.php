@@ -10,11 +10,19 @@
  * Copyright © 2019 PondokIT. All rights reserved.
  */
 
-namespace Pravodev\Laramoud\Utils;
+if(!function_exists('module_exists')){
+    /**
+     * Check module exist
+     * 
+     * @return bool
+     */
+    function module_exists($name){
+        $path = __DIR__.'/../../cache/laramoud.php';
+        if(!file_exists($path)){
+            return false;
+        }
 
-class Helper
-{
-    public static function array_get($array, $keys)
-    {
+        $laramoud = include($path);
+        return in_array($name, $laramoud['modules']);
     }
 }
