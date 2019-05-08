@@ -42,6 +42,11 @@ class MigrateCommand extends Command
      */
     public function handle()
     {
+        if(file_exists($this->getModulePath($this->argument('module_name')).'/') == false){
+            $this->error('module with name '. $this->argument('module_name').' not found');
+            return;
+        }
+
         $this->call('migrate', [
             '--database' => $this->option('database'),
             '--path' => $this->getMigrationPath(),

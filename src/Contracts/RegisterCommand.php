@@ -19,6 +19,7 @@ trait RegisterCommand
         \Pravodev\Laramoud\Commands\ClearCommand::class,
 
         // List all generator commands
+        \Pravodev\Laramoud\Commands\Generators\ChannelMakeCommand::class,
         \Pravodev\Laramoud\Commands\Generators\ControllerMakeCommand::class,
         \Pravodev\Laramoud\Commands\Generators\EventMakeCommand::class,
         \Pravodev\Laramoud\Commands\Generators\ExceptionMakeCommand::class,

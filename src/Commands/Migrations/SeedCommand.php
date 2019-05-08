@@ -26,13 +26,29 @@ class SeedCommand extends Command
     protected $description = 'Seed the database with records';
     
     /**
+     * Create a new migration command instance.
+     *
+     * @param  \Illuminate\Database\Migrations\Migrator  $migrator
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->cacheInit();
+    }
+    
+    /**
      *  Execute the console command.
      *
      * @return void
      */
     public function handle()
     {
-        dd($this->getModuleSeederClass());
+        if(file_exists($this->getModulePath($this->argument('module_name')).'/') == false){
+            $this->error('module with name '. $this->argument('module_name').' not found');
+            return;
+        }
+        
         $this->call('db:seed', [
             '--class' => $this->getModuleSeederClass(),
             '--database' => $this->option('database'),

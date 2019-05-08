@@ -26,6 +26,16 @@ trait GeneratorTrait
         $this->cacheInit();
     }
 
+    public function handle()
+    {
+        if(file_exists($this->getModulePath($this->argument('module_name')).'/') == false){
+            $this->error('module with name '. $this->argument('module_name').' not found');
+            return;
+        }
+
+        parent::handle();
+    }
+
     protected function getArguments()
     {
         return array_merge([
