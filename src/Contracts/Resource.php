@@ -23,7 +23,7 @@ trait Resource
      */
     public function loadViews($module_name)
     {
-        $path = $this->getModulePath($module_name);
+        $path = $this->getModulePath($module_name.'/resources/views');
         $namespace = $module_name;
         $this->loadViewsFrom($path, $namespace);
     }
