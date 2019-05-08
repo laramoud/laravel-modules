@@ -39,6 +39,10 @@ trait RegisterCommand
         \Pravodev\Laramoud\Commands\Generators\RuleMakeCommand::class,
         \Pravodev\Laramoud\Commands\Generators\SeederMakeCommand::class,
         \Pravodev\Laramoud\Commands\Generators\TestMakeCommand::class,
+
+        // List all migration command
+        \Pravodev\Laramoud\Commands\Migrations\MigrateCommand::class,
+        \Pravodev\Laramoud\Commands\Migrations\SeedCommand::class,
     ];
 
     public function registerCommands()
