@@ -1,0 +1,23 @@
+{
+    "name": "ModuleName",
+    "type": "laramoud-module",
+    "description": "ModuleDescription",
+    "license": "MIT",
+    "require": {
+        "pravodev/laramoud": "LaramoudVersion"
+    },
+    "autoload": {
+        "psr-4": {
+            "NamespaceOfModule\": "src/"
+        },
+        "classmap": [
+            "database/seeds",
+            "database/factories"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NamespaceOfModule\Tests\\": "tests/"
+        }
+    }
+}
