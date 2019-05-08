@@ -50,7 +50,11 @@
     "autoload-dev": {
         "psr-4": {
             "Pravodev\\Laramoud\\Tests\\": "tests"
-        }
+        },
+        "files": [
+            "src/Utils/Helper.php"
+        ]
+
     },
     "extra": {
         "laravel": {
