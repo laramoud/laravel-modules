@@ -16,6 +16,7 @@ use Illuminate\Support\ServiceProvider;
 use Pravodev\Laramoud\Contracts\RegisterCommand;
 use Pravodev\Laramoud\Contracts\Resource;
 use Pravodev\Laramoud\Contracts\Module;
+use Illuminate\Support\Facades\Blade;
 
 class LaramoudServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,20 @@ class LaramoudServiceProvider extends ServiceProvider
         parent::__construct($app);
         $this->cacheInit();
     }
+
+    /**
+     * Register services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $file = __DIR__.'/Utils/Helper.php';
+        if (file_exists($file)) {
+            require_once($file);
+        }
+    }
+
     /**
      * Bootstrap services.
      *
@@ -42,6 +57,7 @@ class LaramoudServiceProvider extends ServiceProvider
         }
 
         $this->loadModules();
+        $this->addBladeDirective();
     }
 
     /**
@@ -55,6 +71,27 @@ class LaramoudServiceProvider extends ServiceProvider
             $this->loadViews($module);
             $this->loadRoutes($module);
             $this->loadMigrations($module);
+        }
+    }
+    /**
+     * Extends Blade directive.
+     * 
+     * @return void
+     */
+    public function addBladeDirective()
+    {
+        $directives = [
+            'hasmodule' => function($name){
+                return "<?php if (module_exists($name)) { ?>";
+            },
+            'donthavemodule' => function($name){
+                return "<?php if (module_exists($name) === false) { ?>";
+            }
+        ];
+
+        foreach ($directives as $name => $expression) {
+            Blade::directive($name, $expression);
+            Blade::directive('end'.$name, $expression);
         }
     }
 }
