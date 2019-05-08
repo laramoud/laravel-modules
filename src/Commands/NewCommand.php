@@ -34,7 +34,7 @@ class NewCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'laramoud:new {module_name} {--force}';
+    protected $signature = 'laramoud:new {module_name} {--force} {--laramoud-version= : Version of laramoud}';
 
     /**
      * The console command description.
@@ -173,27 +173,22 @@ class NewCommand extends Command
 
         $description = $this->ask('Description ');
 
-        $packageName = 'laramoud-module/'.$module_name;
-
-        $composer = [
-            'name'        => $packageName,
-            'description' => $description,
-            'type'        => 'laramoud-module',
-            'require'     => [
-                'pravodev/laramoud' => 'dev-develop',
-            ],
-            'autoload' => [
-                'psr-4' => [
-                    $this->getModuleNamespace($module_name) => 'src/',
-                ],
-            ],
-        ];
-
-        \file_put_contents($filename, json_encode($composer, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+        \file_put_contents($filename, $this->buildComposer($module_name, $description));
 
         return $this;
     }
 
+    public function buildComposer($module_name, $description)
+    {
+        $stub = file_get_contents(__DIR__.'/stubs/composer.json.stub');
+        $packageName = 'laramoud-module/'.$module_name;
+        return str_replace(
+            ['NamespaceOfModule', 'ModuleName', 'ModuleDescription', 'LaramoudVersion'],
+            [$this->getModuleNamespace($module_name), $packageName, $description, ($this->option('laramoud-version') ?: 'dev-develop')],
+            $stub
+        );
+    }
+    
     public function addModuleToBaseComposer($directory)
     {
         $this->info('add module to base composer');
