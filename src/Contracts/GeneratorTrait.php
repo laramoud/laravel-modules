@@ -10,7 +10,7 @@
  * Copyright © 2019 PondokIT. All rights reserved.
  */
 
-namespace Pravodev\Laramoud\Contracts;
+namespace Laramoud\Modules\Contracts;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
@@ -24,6 +24,16 @@ trait GeneratorTrait
     {
         parent::__construct($files);
         $this->cacheInit();
+    }
+
+    public function handle()
+    {
+        if(file_exists($this->getModulePath($this->argument('module_name')).'/') == false){
+            $this->error('module with name '. $this->argument('module_name').' not found');
+            return;
+        }
+
+        parent::handle();
     }
 
     protected function getArguments()

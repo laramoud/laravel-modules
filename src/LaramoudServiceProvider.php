@@ -12,13 +12,35 @@
 
 namespace Pravodev\Laramoud;
 
-use Pravodev\Laramoud\Contracts\RegisterCommand;
-use Pravodev\Laramoud\Providers\ModuleServiceProvider;
+use Illuminate\Support\ServiceProvider;
+use Laramoud\Modules\Contracts\RegisterCommand;
+use Laramoud\Modules\Contracts\Resource;
+use Laramoud\Modules\Contracts\Module;
+use Illuminate\Support\Facades\Blade;
 
-class LaramoudServiceProvider extends ModuleServiceProvider
+class LaramoudServiceProvider extends ServiceProvider
 {
-    use RegisterCommand;
+    use RegisterCommand, Resource, Module;
     
+    public function __construct($app)
+    {
+        parent::__construct($app);
+        $this->cacheInit();
+    }
+
+    /**
+     * Register services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $file = __DIR__.'/Utils/Helper.php';
+        if (file_exists($file)) {
+            require_once($file);
+        }
+    }
+
     /**
      * Bootstrap services.
      *
@@ -35,5 +57,43 @@ class LaramoudServiceProvider extends ModuleServiceProvider
         }
 
         $this->loadModules();
+        $this->addBladeDirective();
+    }
+
+    /**
+     * Load View Routes Migration & OBservers of Module.
+     *
+     * @return void
+     */
+    public function loadModules()
+    {
+        foreach ($this->getListOfModules() as $module) {
+            $this->loadViews($module);
+            $this->loadRoutes($module);
+            $this->loadMigrations($module);
+        }
+    }
+    /**
+     * Extends Blade directive.
+     * 
+     * @return void
+     */
+    public function addBladeDirective()
+    {
+        $directives = [
+            'hasmodule' => function($name){
+                return "<?php if (module_exists($name)) { ?>";
+            },
+            'donthavemodule' => function($name){
+                return "<?php if (module_exists($name) === false) { ?>";
+            }
+        ];
+
+        foreach ($directives as $name => $expression) {
+            Blade::directive($name, $expression);
+            Blade::directive('end'.$name, function(){
+                return "<?php } ?>";
+            });
+        }
     }
 }

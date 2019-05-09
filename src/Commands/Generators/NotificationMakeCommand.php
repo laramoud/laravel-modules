@@ -1,9 +1,9 @@
 <?php
 
-namespace Pravodev\Laramoud\Commands\Generators;
+namespace Laramoud\Modules\Commands\Generators;
 
 use Illuminate\Foundation\Console\NotificationMakeCommand as BaseNotificationMakeCommand;
-use Pravodev\Laramoud\Contracts\GeneratorTrait;
+use Laramoud\Modules\Contracts\GeneratorTrait;
 
 class NotificationMakeCommand extends BaseNotificationMakeCommand
 {

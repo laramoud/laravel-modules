@@ -10,7 +10,7 @@
  * Copyright © 2019 PondokIT. All rights reserved.
  */
 
-namespace Pravodev\Laramoud\Contracts;
+namespace Laramoud\Modules\Contracts;
 
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +23,7 @@ trait Resource
      */
     public function loadViews($module_name)
     {
-        $path = $this->getModulePath($module_name);
+        $path = $this->getModulePath($module_name.'/resources/views');
         $namespace = $module_name;
         $this->loadViewsFrom($path, $namespace);
     }

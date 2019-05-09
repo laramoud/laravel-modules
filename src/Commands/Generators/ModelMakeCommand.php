@@ -1,10 +1,10 @@
 <?php
 
-namespace Pravodev\Laramoud\Commands\Generators;
+namespace Laramoud\Modules\Commands\Generators;
 
 use Illuminate\Foundation\Console\ModelMakeCommand as BaseModelMakeCommand;
 use Illuminate\Support\Str;
-use Pravodev\Laramoud\Contracts\GeneratorTrait;
+use Laramoud\Modules\Contracts\GeneratorTrait;
 
 class ModelMakeCommand extends BaseModelMakeCommand
 {

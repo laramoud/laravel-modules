@@ -1,9 +1,9 @@
 <?php
 
-namespace Pravodev\Laramoud\Commands\Generators;
+namespace Laramoud\Modules\Commands\Generators;
 
 use Illuminate\Foundation\Console\RequestMakeCommand as BaseRequestMakeCommand;
-use Pravodev\Laramoud\Contracts\GeneratorTrait;
+use Laramoud\Modules\Contracts\GeneratorTrait;
 
 class RequestMakeCommand extends BaseRequestMakeCommand
 {

@@ -11,10 +11,10 @@
  * Copyright © 2019 PondokIT. All rights reserved.
  */
 
-namespace Pravodev\Laramoud\Contracts;
+namespace Laramoud\Modules\Contracts;
 
 use Illuminate\Support\Str;
-use Pravodev\Laramoud\Utils\Cache;
+use Laramoud\Modules\Utils\Cache;
 
 trait Module
 {
@@ -83,6 +83,11 @@ trait Module
         return config('laramoud.'.$key);
     }
 
+    /**
+     * Get base composer.
+     * 
+     * @return array
+     */
     public function getComposer()
     {
         if ($composer = $this->cache->get('composer')) {
@@ -94,6 +99,11 @@ trait Module
         return $composer;
     }
 
+    /**
+     * Get namespace of module.
+     * 
+     * @return string
+     */
     public function getModuleNamespace($module)
     {
         return Str::studly($module).'\\';

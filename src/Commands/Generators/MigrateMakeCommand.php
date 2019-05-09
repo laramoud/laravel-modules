@@ -10,10 +10,10 @@
  * Copyright © 2019 PondokIT. All rights reserved.
  */
 
-namespace Pravodev\Laramoud\Commands\Generators;
+namespace Laramoud\Modules\Commands\Generators;
 
 use Illuminate\Console\Command;
-use Pravodev\Laramoud\Contracts\Module;
+use Laramoud\Modules\Contracts\Module;
 
 class MigrateMakeCommand extends Command
 {
@@ -45,6 +45,11 @@ class MigrateMakeCommand extends Command
 
     public function handle()
     {
+        if(file_exists($this->getModulePath($this->argument('module_name')).'/') == false){
+            $this->error('module with name '. $this->argument('module_name').' not found');
+            return;
+        }
+        
         $this->call('make:migration', [
             'name'       => $this->argument('name'),
             '--create'   => $this->option('create'),
