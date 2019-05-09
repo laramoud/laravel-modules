@@ -1,11 +1,11 @@
 <?php
 
-namespace Pravodev\Laramoud\Commands\Generators;
+namespace Laramoud\Modules\Commands\Generators;
 
 use Illuminate\Database\Console\Seeds\SeederMakeCommand as BaseSeederMakeCommand;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Composer;
-use Pravodev\Laramoud\Contracts\GeneratorTrait;
+use Laramoud\Modules\Contracts\GeneratorTrait;
 
 class SeederMakeCommand extends BaseSeederMakeCommand
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Pravodev\Laramoud\Commands\Generators;
+namespace Laramoud\Modules\Commands\Generators;
 
 use Illuminate\Database\Console\Factories\FactoryMakeCommand as BaseFactoryMakeCommand;
-use Pravodev\Laramoud\Contracts\GeneratorTrait;
+use Laramoud\Modules\Contracts\GeneratorTrait;
 
 class FactoryMakeCommand extends BaseFactoryMakeCommand
 {

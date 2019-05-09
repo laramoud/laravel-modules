@@ -1,10 +1,10 @@
 <?php
 
-namespace Pravodev\Laramoud\Commands\Generators;
+namespace Laramoud\Modules\Commands\Generators;
 
 use Illuminate\Foundation\Console\TestMakeCommand as BaseTestMakeCommand;
 use Illuminate\Support\Str;
-use Pravodev\Laramoud\Contracts\GeneratorTrait;
+use Laramoud\Modules\Contracts\GeneratorTrait;
 
 class TestMakeCommand extends BaseTestMakeCommand
 {

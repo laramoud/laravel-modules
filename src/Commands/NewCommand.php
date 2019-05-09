@@ -10,11 +10,11 @@
  * Copyright © 2019 PondokIT. All rights reserved.
  */
 
-namespace Pravodev\Laramoud\Commands;
+namespace Laramoud\Modules\Commands;
 
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
-use Pravodev\Laramoud\Contracts\Module;
+use Laramoud\Modules\Contracts\Module;
 use RuntimeException;
 use ZipArchive;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace Pravodev\Laramoud\Tests;
+namespace Laramoud\Modules\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Pravodev\Laramoud\Contracts\Module;
+use Laramoud\Modules\Contracts\Module;
 
 class CacheTest extends TestCase
 {

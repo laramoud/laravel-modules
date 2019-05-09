@@ -10,40 +10,40 @@
  * Copyright © 2019 PondokIT. All rights reserved.
  */
 
-namespace Pravodev\Laramoud\Contracts;
+namespace Laramoud\Modules\Contracts;
 
 trait RegisterCommand
 {
     protected $commands = [
-        \Pravodev\Laramoud\Commands\NewCommand::class,
-        \Pravodev\Laramoud\Commands\ClearCommand::class,
+        \Laramoud\Modules\Commands\NewCommand::class,
+        \Laramoud\Modules\Commands\ClearCommand::class,
 
         // List all generator commands
-        \Pravodev\Laramoud\Commands\Generators\ChannelMakeCommand::class,
-        \Pravodev\Laramoud\Commands\Generators\ControllerMakeCommand::class,
-        \Pravodev\Laramoud\Commands\Generators\EventMakeCommand::class,
-        \Pravodev\Laramoud\Commands\Generators\ExceptionMakeCommand::class,
-        \Pravodev\Laramoud\Commands\Generators\FactoryMakeCommand::class,
-        \Pravodev\Laramoud\Commands\Generators\JobMakeCommand::class,
-        \Pravodev\Laramoud\Commands\Generators\ListenerMakeCommand::class,
-        \Pravodev\Laramoud\Commands\Generators\MailMakeCommand::class,
-        \Pravodev\Laramoud\Commands\Generators\MiddlewareMakeCommand::class,
-        \Pravodev\Laramoud\Commands\Generators\MigrateMakeCommand::class,
-        \Pravodev\Laramoud\Commands\Generators\ModelMakeCommand::class,
-        \Pravodev\Laramoud\Commands\Generators\MigrateMakeCommand::class,
-        \Pravodev\Laramoud\Commands\Generators\NotificationMakeCommand::class,
-        \Pravodev\Laramoud\Commands\Generators\ObserverMakeCommand::class,
-        \Pravodev\Laramoud\Commands\Generators\PolicyMakeCommand::class,
-        \Pravodev\Laramoud\Commands\Generators\ProviderMakeCommand::class,
-        \Pravodev\Laramoud\Commands\Generators\RequestMakeCommand::class,
-        \Pravodev\Laramoud\Commands\Generators\ResourceMakeCommand::class,
-        \Pravodev\Laramoud\Commands\Generators\RuleMakeCommand::class,
-        \Pravodev\Laramoud\Commands\Generators\SeederMakeCommand::class,
-        \Pravodev\Laramoud\Commands\Generators\TestMakeCommand::class,
+        \Laramoud\Modules\Commands\Generators\ChannelMakeCommand::class,
+        \Laramoud\Modules\Commands\Generators\ControllerMakeCommand::class,
+        \Laramoud\Modules\Commands\Generators\EventMakeCommand::class,
+        \Laramoud\Modules\Commands\Generators\ExceptionMakeCommand::class,
+        \Laramoud\Modules\Commands\Generators\FactoryMakeCommand::class,
+        \Laramoud\Modules\Commands\Generators\JobMakeCommand::class,
+        \Laramoud\Modules\Commands\Generators\ListenerMakeCommand::class,
+        \Laramoud\Modules\Commands\Generators\MailMakeCommand::class,
+        \Laramoud\Modules\Commands\Generators\MiddlewareMakeCommand::class,
+        \Laramoud\Modules\Commands\Generators\MigrateMakeCommand::class,
+        \Laramoud\Modules\Commands\Generators\ModelMakeCommand::class,
+        \Laramoud\Modules\Commands\Generators\MigrateMakeCommand::class,
+        \Laramoud\Modules\Commands\Generators\NotificationMakeCommand::class,
+        \Laramoud\Modules\Commands\Generators\ObserverMakeCommand::class,
+        \Laramoud\Modules\Commands\Generators\PolicyMakeCommand::class,
+        \Laramoud\Modules\Commands\Generators\ProviderMakeCommand::class,
+        \Laramoud\Modules\Commands\Generators\RequestMakeCommand::class,
+        \Laramoud\Modules\Commands\Generators\ResourceMakeCommand::class,
+        \Laramoud\Modules\Commands\Generators\RuleMakeCommand::class,
+        \Laramoud\Modules\Commands\Generators\SeederMakeCommand::class,
+        \Laramoud\Modules\Commands\Generators\TestMakeCommand::class,
 
         // List all migration command
-        \Pravodev\Laramoud\Commands\Migrations\MigrateCommand::class,
-        \Pravodev\Laramoud\Commands\Migrations\SeedCommand::class,
+        \Laramoud\Modules\Commands\Migrations\MigrateCommand::class,
+        \Laramoud\Modules\Commands\Migrations\SeedCommand::class,
     ];
 
     public function registerCommands()

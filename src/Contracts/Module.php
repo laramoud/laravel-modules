@@ -11,10 +11,10 @@
  * Copyright © 2019 PondokIT. All rights reserved.
  */
 
-namespace Pravodev\Laramoud\Contracts;
+namespace Laramoud\Modules\Contracts;
 
 use Illuminate\Support\Str;
-use Pravodev\Laramoud\Utils\Cache;
+use Laramoud\Modules\Utils\Cache;
 
 trait Module
 {

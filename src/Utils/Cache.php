@@ -10,7 +10,7 @@
  * Copyright © 2019 PondokIT. All rights reserved.
  */
 
-namespace Pravodev\Laramoud\Utils;
+namespace Laramoud\Modules\Utils;
 
 class Cache
 {

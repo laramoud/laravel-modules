@@ -10,7 +10,7 @@
  * Copyright © 2019 PondokIT. All rights reserved.
  */
 
-namespace Pravodev\Laramoud\Contracts;
+namespace Laramoud\Modules\Contracts;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;

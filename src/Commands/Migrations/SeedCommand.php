@@ -1,9 +1,9 @@
 <?php
 
-namespace Pravodev\Laramoud\Commands\Migrations;
+namespace Laramoud\Modules\Commands\Migrations;
 
 use Illuminate\Console\Command;
-use Pravodev\Laramoud\Contracts\Module;
+use Laramoud\Modules\Contracts\Module;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 

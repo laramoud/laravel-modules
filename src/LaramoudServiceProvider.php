@@ -13,9 +13,9 @@
 namespace Pravodev\Laramoud;
 
 use Illuminate\Support\ServiceProvider;
-use Pravodev\Laramoud\Contracts\RegisterCommand;
-use Pravodev\Laramoud\Contracts\Resource;
-use Pravodev\Laramoud\Contracts\Module;
+use Laramoud\Modules\Contracts\RegisterCommand;
+use Laramoud\Modules\Contracts\Resource;
+use Laramoud\Modules\Contracts\Module;
 use Illuminate\Support\Facades\Blade;
 
 class LaramoudServiceProvider extends ServiceProvider
